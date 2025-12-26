@@ -12,8 +12,18 @@ const store = require("./data/store");
 
 // ✅ INIT APP FIRST
 const app = express();
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
+
+const cors = require("cors");
+
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://inventory-frontend.vercel.app"
+  ],
+  credentials: true
+}));
 
 // ✅ BASIC HEALTH CHECK
 app.get("/", (_, res) => res.send("Inventory backend running"));
