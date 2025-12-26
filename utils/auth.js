@@ -1,10 +1,8 @@
-const ADMIN = {
-  email: "admin@inventory.com",
-  password: "admin123"
-};
+const ADMIN_EMAIL = "admin@inventory.com";
+const ADMIN_PASSWORD = "admin123";
 
-function isAdmin(email, password) {
-  return email === ADMIN.email && password === ADMIN.password;
+function adminLogin(email, password) {
+  return email === ADMIN_EMAIL && password === ADMIN_PASSWORD;
 }
 
-module.exports = { ADMIN, isAdmin };
+module.exports = { adminLogin };

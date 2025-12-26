@@ -8,6 +8,7 @@ router.get("/low-stock", (_, res) => {
   );
 });
 
+
 router.get("/slow-moving", (_, res) => {
   const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
@@ -21,6 +22,21 @@ router.get("/slow-moving", (_, res) => {
       )
     )
   );
+});
+router.get("/stock-movements", (_, res) => {
+  const store = require("../data/store");
+
+  const data = store.stockMovements.map(m => {
+    const product = store.products.find(p => p.id === m.productId);
+    return {
+      productName: product?.name || "Unknown",
+      type: m.type,
+      quantity: m.quantity,
+      timestamp: m.timestamp
+    };
+  });
+
+  res.json(data);
 });
 
 module.exports = router;
